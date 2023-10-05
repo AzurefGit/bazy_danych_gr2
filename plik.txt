@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 Hello World!
+JASLKFHAJLKSDHFA:LS 
+=======
+Hello World!!!
+>>>>>>> d5c10d4142fd857fb7a0051753503fae7654cc61
 JASLKFHAJLKSDHFA:LS 
