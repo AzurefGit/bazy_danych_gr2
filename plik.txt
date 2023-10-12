@@ -1,4 +1,2 @@
 Hello World!
-linia z fix_001
-test nr2
-jhsakfje
+linia z fix_00111
