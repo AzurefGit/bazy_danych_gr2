@@ -42,9 +42,9 @@ foreign key (id_konsumenta) references postac(id_postaci));
 *Zadanie 5*
 
 ```sql
-CREATE TABLE statek (
-    nazwa_statku varchar(60) primary key,
-    rodzaj_statku enum('pasazerski', 'towarowy', 'wojenny'),
-    data_wodowania date,
-    max_ladownosc int unsigned);
+create table statek (
+nazwa_statku varchar(60) primary key,
+rodzaj_statku enum('pasazerski', 'towarowy', 'wojenny'),
+data_wodowania date,
+max_ladownosc int unsigned);
 ```
