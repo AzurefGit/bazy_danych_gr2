@@ -76,7 +76,50 @@ insert into postac values('65482068251',11,'Loko','wąż','2018-03-20',5,NULL,NU
 ```
 *Podpunkt b)*
 ```sql
+create table marynarz like postac;
+# przenosi klucz główny, obcych nie
+insert into marynarz select * from postac 
+where nazwa_statku is not null;
+# is porownuje głebie, a <> porownuje wartosci
+# create table marynarz2 as select postac; # czyste kolumny bez kluczy
+```
 
+*Podpunkt c)*
+```sql
+alter table marynarz
+add foreign key (nazwa_statku) references statek(nazwa_statku);
+```
+
+
+**Zadanie 5**
+
+podpunkt a)
+```sql
+update postac set nazwa_statku = null;
+```
+podpunkt b)
+```sql
+delete from postac where rodzaj='wiking' and  nazwa='Olaf';
+```
+podpunkt c)
+```sql
+delete from statek where 1;
+```
+podpunkt d)
+```sql
+drop table statek;
+```
+podpunkt e)
+```sql
+create table zwierz(
+id_zwierz int primary key auto_increment,
+nazwa varchar(100),
+wiek int);
+```
+podpunkt f)
+```sql
+insert into zwierz select id_postaci, nazwa, wiek from postac where rodzaj = 'ptak' or rodzaj = 'wąż';
+select * from zwierz;
 ```
 
 ciekawostki:
