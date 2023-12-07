@@ -62,19 +62,33 @@ select idKreatury from kreatura where idKreatury not in (select distinct idKreat
 
 *Podpunkt a)*
 ```sql
-select k.nazwa, z.nazwa, k.dataUr from kreatura k inner join ekwipunek e on k.idKreatury=e.idKreatury inner join zasob z on z.idZasobu=e.idZasobu having year(k.dataUr) = 1670 ;
+select k.nazwa, z.nazwa, k.dataUr from kreatura k inner join ekwipunek e on k.idKreatury=e.idKreatury inner join zasob z on z.idZasobu=e.idZasobu having year(k.dataUr) like '167_';
 ```
 
 *Podpunkt b)*
 ```sql
-select k.nazwa, z.nazwa, k.dataUr from kreatura k inner join ekwipunek e on k.idKreatury=e.idKreatury inner join zasob z on z.idZasobu=e.idZasobu having year(k.dataUr) = 1670 ;
+select * from kreatura k inner join ekwipunek e on k.idKreatury=e.idKreatury inner join zasob z
+on z.idZasobu=e.idZasobu where z.rodzaj = 'jedzenie' order by k.nazwa asc limit 5;
 ```
 
 *Podpunkt c)*
 ```sql
-
+#połączenie tabeli samej ze soba
+select concat(k1.nazwa,' ',k2.nazwa) from kreatura k1 inner join kreatura k2 where k1.idKreatury - k2.idKreatury = 5;
 ```
 
+**Zadanie 5**
+
+
+*Podpunkt a)*
+```sql
+select k.rodzaj, avg(e.ilosc* z.waga) from kreatura k inner join ekwipunek e on e.idKreatury=k.idKreatury inner join zasob z on e.idZasobu=z.idZasobu where k.rodzaj not in ('malpa', 'waz') group by k.rodzaj having sum(e.ilosc) < 30;
+```
+
+*Podpunkt b)*
+```sql
+
+```
 **Ciekawostki/dodatkowe materiały**
 
 ```sql
