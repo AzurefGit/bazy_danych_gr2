@@ -87,7 +87,7 @@ select k.rodzaj, avg(e.ilosc* z.waga) from kreatura k inner join ekwipunek e on 
 
 *Podpunkt b)*
 ```sql
-
+select rodzaj, nazwa, min(year(dataUr)) as najmlodszaKreatura, max(year(dataUr)) as najstarszaKreatura from kreatura group by rodzaj
 ```
 **Ciekawostki/dodatkowe materiały**
 
