@@ -4,3 +4,13 @@
 ```sql
 
 ```
+
+*Podpunkt b)*
+```sql
+
+```
+
+*Podpunkt c)*
+```sql
+
+```
