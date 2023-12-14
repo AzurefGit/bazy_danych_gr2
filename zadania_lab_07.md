@@ -82,19 +82,25 @@ select concat(k1.nazwa,' ',k2.nazwa) from kreatura k1 inner join kreatura k2 whe
 
 *Podpunkt a)*
 ```sql
-select k.rodzaj, avg(e.ilosc* z.waga) from kreatura k inner join ekwipunek e on e.idKreatury=k.idKreatury inner join zasob z on e.idZasobu=z.idZasobu where k.rodzaj not in ('malpa', 'waz') group by k.rodzaj having sum(e.ilosc) < 30;
+#1. Gdzie dane?
+#2. Które kolumny
+#3. Wakunek (1200zł)
+#4. (repeta) Koncowe cośki(group by, order by, having, limit, ...)
+select k.rodzaj, avg(z.waga * e.ilosc) from kreatura k inner join ekwipunek e on k.idKreatury=e.idKreatury inner join zasob z on e.idZasobu=z.idZasobu where k.rodzaj not in ('waz','malpa') and e.ilosc < 30 group by k.rodzaj; 
 ```
 
 *Podpunkt b)*
 ```sql
-select rodzaj, nazwa, min(year(dataUr)) as najmlodszaKreatura, max(year(dataUr)) as najstarszaKreatura from kreatura group by rodzaj
+#1. sposób (podzapytanie):
+select a.nazwa, a.rodzaj, a.dataUr from kreatura a, (select min(dataUr) min, max(dataUr) max from kreatura group by rodzaj) b where b.min = a.dataUr or b.max=a.dataUr;
+#2. sposób (select ... union select ....)
 ```
 **Ciekawostki/dodatkowe materiały**
 
 ```sql
 #funkcje agregujące: avg(), sum(), count(), min(), max()
 #wartości nie null "count(*)" 
-#wyświetlanie wieku 
+#wyświetlanie wieku:
 select year(curdate()) - year(dataUr) as wiek from kreatura;
 select year(now()) - year(dataUr) as wiek from kreatura;
 #warunki przed selectem
