@@ -56,7 +56,7 @@ select k.nazwa, if(count(u.id_uczestnika) > 0, 'brał udział w wyprawie', 'nie 
 
 *Podpunkt a)*
 ```sql
-select w.nazwa, ew.dziennik from etapy_wyprawy ew inner join wyprawa w on w.id_wyprawy = ew.idWyprawy group by ew.idEtapu having length(ew.dziennik) < 400;
+select w.nazwa, sum(length(ew.dziennik)) as suma_znakow from etapy_wyprawy ew inner join wyprawa w on w.id_wyprawy = ew.idWyprawy group by w.nazwa having suma_znakow < 400;
 ```
 
 *Podpunkt b)*
@@ -69,8 +69,8 @@ select u.id_wyprawy, w.nazwa, sum(e.ilosc*z.waga) / count(distinct u.id_uczestni
 
 *Podpunkt a)*
 ```sql
+select k.nazwa, datediff(w.data_rozpoczecia, k.dataUr) from kreatura k inner join wyprawa w on k.idKreatury = w.kierownik inner join etapy_wyprawy ew on ew.idWyprawy = w.id_wyprawy inner join sektor s on s.id_sektora = ew.sektor where s.nazwa like 'Chatka dziadka';
 ```
-
 
 **Ciekawostki**
 ```sql
