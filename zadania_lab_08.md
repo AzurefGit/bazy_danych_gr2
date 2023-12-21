@@ -38,7 +38,34 @@ select w.nazwa, count(k.idKreatury) as 'liczbaUczestnikow', group_concat(k.nazwa
 select ew.idwyprawy, ew.dziennik, s.nazwa as 'nazwa_sektora', k.nazwa as 'nazwa_kierownika' from etapy_wyprawy ew inner join sektor s on ew.sektor=s.id_sektora inner join wyprawa w on ew.idwyprawy=w.id_wyprawy inner join kreatura k on w.kierownik=k.idKreatury order by w.data_rozpoczecia asc, ew.kolejnosc asc;
 ```
 
-**Ciekawostki**
 
+**Zadanie 3**
+
+*Podpunkt a)*
+```sql
+select s.nazwa, count(ew.sektor) from sektor s left join etapy_wyprawy ew on s.id_sektora = ew.sektor group by s.id_sektora
+```
+
+*Podpunkt b)*
+```sql
+select k.nazwa, if(count(u.id_uczestnika) > 0, 'brał udział w wyprawie', 'nie brał udział w wyprawie') czy_bral_udzial from kreatura k left join uczestnicy u on u.id_uczestnika = k.idKreatury group by k.idKreatury;
+```
+
+
+**Zadanie 4**
+
+*Podpunkt a)*
+```sql
+
+```
+
+*Podpunkt b)*
+```sql
+
+```
+
+**Ciekawostki**
+#Jeżeli coś zwraca null mozna zmienić wyświetlanie na dowolny cosiek:
+-ifnull((ew.sektor), 0) <-- wypisze 0 jeżeli jet null
 
 #Nie bedzie 5.2 z lab07 na kol
