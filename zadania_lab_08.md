@@ -56,16 +56,26 @@ select k.nazwa, if(count(u.id_uczestnika) > 0, 'brał udział w wyprawie', 'nie 
 
 *Podpunkt a)*
 ```sql
-
+select w.nazwa, ew.dziennik from etapy_wyprawy ew inner join wyprawa w on w.id_wyprawy = ew.idWyprawy group by ew.idEtapu having length(ew.dziennik) < 400;
 ```
 
 *Podpunkt b)*
 ```sql
-
+select u.id_wyprawy, w.nazwa, sum(e.ilosc*z.waga) / count(distinct u.id_uczestnika) from uczestnicy u inner join ekwipunek e on u.id_uczestnika = e.idKreatury inner join zasob z on z.idZasobu = e.idZasobu inner join wyprawa w on w.id_wyprawy = u.id_wyprawy group by w.id_wyprawy;
 ```
 
+
+**Zadanie 5**
+
+*Podpunkt a)*
+```sql
+```
+
+
 **Ciekawostki**
+```sql
 #Jeżeli coś zwraca null mozna zmienić wyświetlanie na dowolny cosiek:
 -ifnull((ew.sektor), 0) <-- wypisze 0 jeżeli jet null
 
 #Nie bedzie 5.2 z lab07 na kol
+```
