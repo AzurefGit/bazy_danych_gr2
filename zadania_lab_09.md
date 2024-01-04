@@ -2,6 +2,7 @@
 
 *Podpunkt a)*
 ```sql
+
 ```
 
 
