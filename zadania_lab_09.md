@@ -72,4 +72,5 @@ DELIMITER ;
 *Ciekawostki*
 
 Nie bedzie na  kol
+
 Bedzie na wej 11.01.2024
