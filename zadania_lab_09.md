@@ -26,11 +26,37 @@ BEGIN
 END
 //
 
-# Funkcja 
 
-alter table kreatura modify waga int default 0;
+alter table kreatura modify waga int default 0; #zmiana na signed, by błędów nie było
+show create trigger nazwa; #wyświetlanie
+
 ```
 
+**Zadanie 2**
+
+*Podpunkt a)*
+```sql
+create ... like ...
+... modify ... varchar(50)
+
+DELIMITER //
+create trigger wyprawa_before_delete
+before delete ON wyprawa 
+for each row
+BEGIN
+	insert into archiwum_wypraw 
+	select w.id_wyprawy, w.nazwa, w.data_rozpoczecia, w.data_zakonczenia, k.nazwa from wyprawa w
+	inner join kreatura k on w.kierownik=k.idKreatury where id.wyprawy = old.id_wyprawy;
+END
+//
+```
+
+**Zadanie 2**
+
+*Podpunkt a)*
+```sql
+
+```
 
 
 *Ciekawostki*
