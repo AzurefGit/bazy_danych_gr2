@@ -51,13 +51,23 @@ END
 //
 ```
 
-**Zadanie 2**
+**Zadanie 3**
 
 *Podpunkt a)*
 ```sql
-
+DELIMITER $$
+CREATE PROCEDURE eliksir_sily(IN id int)
+BEGIN
+Update kreatura set udzwig = 1.2 * udzwig where id_kreatury = id;
+END
+$$
+DELIMITER ;
 ```
 
+*Podpunkt b)*
+```sql
+
+```
 
 *Ciekawostki*
 
