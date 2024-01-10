@@ -120,6 +120,8 @@ END
 $$
 
 DELIMITER ;
+
+insert into uczestnicy values(2,14); #sprawdzenie
 ```
 
 *Ciekawostki*
