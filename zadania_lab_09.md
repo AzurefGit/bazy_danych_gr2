@@ -63,11 +63,21 @@ Update kreatura set udzwig = 1.2 * udzwig where id_kreatury = id;
 END
 $$
 DELIMITER ;
+
+call eliksir_sily(1);
 ```
 
 *Podpunkt b)*
 ```sql
+DELIMITER $$
+CREATE PROCEDURE wieksze_litery(IN wprowadzony_tekst varchar(50))
+BEGIN
+select upper(wprowadzony_tekst);
+END
+$$
+DELIMITER ;
 
+call wieksze_litery('Test, test');
 ```
 
 **Zadanie 4**
