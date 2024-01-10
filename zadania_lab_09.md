@@ -49,6 +49,7 @@ BEGIN
 	inner join kreatura k on w.kierownik=k.idKreatury where id.wyprawy = old.id_wyprawy;
 END
 //
+DELIMITER ;
 ```
 
 **Zadanie 3**
@@ -67,6 +68,58 @@ DELIMITER ;
 *Podpunkt b)*
 ```sql
 
+```
+
+**Zadanie 4**
+
+*Podpunkt a)*
+```sql
+create table system_alarmowy(id_alarmu int, wiadomosc varchar(50));
+```
+
+*Podpunkt b)*
+```sql
+DELIMITER $$
+
+CREATE TRIGGER uczestnicy_after_insert
+AFTER INSERT ON uczestnicy
+FOR EACH ROW
+BEGIN
+	DECLARE tesciowa varchar(100);
+	DECLARE sektor_id integer;
+	DECLARE czy_tesciowa bool;
+	DECLARE czy_chata_dziadka bool;
+	SET tesciowa = 'Tesciowa';
+	SET sektor_id = 7;
+
+
+
+IF tesciowa in (
+	SELECT nazwa from kreatura WHERE idKreatury in 
+	( SELECT id_uczestnika from uczestnicy where id_wyprawy=NEW.id_wyprawy)) 
+	
+THEN 
+    
+	SET czy_tesciowa = true;
+	END IF;
+    
+IF sektor_id in (
+	SELECT sektor FROM etapy_wyprawy WHERE idWyprawy=NEW.id_wyprawy
+	) 
+THEN 
+	SET czy_chata_dziadka = true;
+END IF;
+    
+IF czy_tesciowa AND czy_chata_dziadka
+    
+THEN  
+	INSERT INTO system_alarmowy VALUES(default,'Tesciowa nadchodzi !!!');
+END IF;
+
+END
+$$
+
+DELIMITER ;
 ```
 
 *Ciekawostki*
